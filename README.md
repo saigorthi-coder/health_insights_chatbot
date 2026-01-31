@@ -1,93 +1,167 @@
-# Clinical Chat Bot
+# Agent Bootcamp
 
+----------------------------------------------------------------------------------------
 
+This is a collection of reference implementations for Vector Institute's **Agent Bootcamp**, taking place between June and September 2025. The repository demonstrates modern agentic workflows for retrieval-augmented generation (RAG), evaluation, and orchestration using the latest Python tools and frameworks.
 
-## Getting started
+## Reference Implementations
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+This repository includes several modules, each showcasing a different aspect of agent-based RAG systems:
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+**2. Frameworks: OpenAI Agents SDK**
+  Showcases the use of the OpenAI agents SDK to reduce boilerplate and improve readability.
 
-## Add your files
+- **[2.1 ReAct Agent for RAG - OpenAI SDK](src/2_frameworks/1_react_rag/README.md)**
+  Implements the same Reason-and-Act agent using the high-level abstractions provided by the OpenAI Agents SDK. This approach reduces boilerplate and improves readability.
+  The use of langfuse for making the agent less of a black-box is also introduced in this module.
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+- **[2.2 Multi-agent Setup for Deep Research](src/2_frameworks/2_multi_agent/README.md)**
+  Demo of a multi-agent architecture to improve efficiency on long-context inputs, reduce latency, and reduce LLM costs. Two versions are available- "efficient" and "verbose". For the build days, you should start from the "efficient" version as that provides greater flexibility and is easier to follow.
 
+**3. Evals: Automated Evaluation Pipelines**
+  Contains scripts and utilities for evaluating agent performance using LLM-as-a-judge and synthetic data generation. Includes tools for uploading datasets, running evaluations, and integrating with [Langfuse](https://langfuse.com/) for traceability.
+
+- **[3.1 LLM-as-a-Judge](src/3_evals/1_llm_judge/README.md)**
+  Automated evaluation pipelines using LLM-as-a-judge with Langfuse integration.
+
+- **[3.2 Evaluation on Synthetic Dataset](src/3_evals/2_synthetic_data/README.md)**
+  Showcases the generation of synthetic evaluation data for testing agents.
+
+We also provide "basic" no-framework implementations. These are meant to showcase how agents work behind the scene and are excessively verbose in the implementation. You should not use these as the basis for real projects.
+
+**1. Basics: Reason-and-Act RAG**
+A minimal Reason-and-Act (ReAct) agent for knowledge retrieval, implemented without any agent framework.
+
+- **[1.0 Search Demo](src/1_basics/0_search_demo/README.md)**
+  A simple demo showing the capabilities (and limitations) of a knowledgebase search.
+
+- **[1.1 ReAct Agent for RAG](src/1_basics/1_react_rag/README.md)**
+  Basic ReAct agent for step-by-step retrieval and answer generation.
+
+## Getting Started
+
+If you successfully created a workspace in Coder, you should already have a `.env` file in the repo.
+
+In that case you can verify that the API keys work by running integration tests with the following command:
+
+```bash
+uv run --env-file .env pytest -sv tests/tool_tests/test_integration.py
 ```
-cd existing_repo
-git remote add origin https://gitlab.lblw.ca/ngl/clinical-chat-bot.git
-git branch -M main
-git push -uf origin main
+
+## Reference Implementations
+
+For "Gradio App" reference implementations, running the script would print out a "public URL" ending in `gradio.live` (might take a few seconds to appear.) To access the gradio app with the full streaming capabilities, copy and paste this `gradio.live` URL into a new browser tab.
+
+For all reference implementations, to exit, press "Ctrl/Control-C" and wait up to ten seconds. If you are a Mac user, you should use "Control-C" and not "Command-C". Please note that by default, the gradio web app reloads automatically as you edit the Python script. There is no need to manually stop and restart the program each time you make some code changes.
+
+You might see warning messages like the following:
+
+```json
+ERROR:openai.agents:[non-fatal] Tracing client error 401: {
+  "error": {
+    "message": "Incorrect API key provided. You can find your API key at https://platform.openai.com/account/api-keys.",
+    "type": "invalid_request_error",
+    "param": null,
+    "code": "invalid_api_key"
+  }
+}
 ```
 
-## Integrate with your tools
+These warnings can be safely ignored, as they are the result of a bug in the upstream libraries. Your agent traces will be uploaded to LangFuse as configured.
 
-- [ ] [Set up project integrations](https://gitlab.lblw.ca/ngl/clinical-chat-bot/-/settings/integrations)
+### 1. Basics
 
-## Collaborate with your team
+Interactive knowledge base demo. Access the gradio interface in your browser to see if your knowledge base meets your expectations.
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+```bash
+uv run --env-file .env gradio src/1_basics/0_search_demo/app.py
+```
 
-## Test and Deploy
+Basic Reason-and-Act Agent- for demo purposes only.
 
-Use the built-in continuous integration in GitLab.
+As noted above, these are unnecessarily verbose for real applications.
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+```bash
+# uv run --env-file .env src/1_basics/1_react_rag/cli.py
+# uv run --env-file .env gradio src/1_basics/1_react_rag/app.py
+```
 
-***
+### 2. Frameworks
 
-# Editing this README
+Reason-and-Act Agent without the boilerplate- using the OpenAI Agent SDK.
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+```bash
+uv run --env-file .env src/2_frameworks/1_react_rag/cli.py
+uv run --env-file .env gradio src/2_frameworks/1_react_rag/langfuse_gradio.py
+```
 
-## Suggestions for a good README
+Multi-agent examples, also via the OpenAI Agent SDK.
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+```bash
+uv run --env-file .env gradio src/2_frameworks/2_multi_agent/efficient.py
+# Verbose option - greater control over the agent flow, but less flexible.
+# uv run --env-file .env gradio src/2_frameworks/2_multi_agent/verbose.py
+```
 
-## Name
-Choose a self-explaining name for your project.
+Python Code Interpreter demo- using the OpenAI Agent SDK, E2B for secure code sandbox, and LangFuse for observability. Refer to [src/2_frameworks/3_code_interpreter/README.md](src/2_frameworks/3_code_interpreter/README.md) for details.
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+MCP server integration example also via OpenAI Agents SDK with Gradio and Langfuse tracing. Refer to [src/2_frameworks/4_mcp/README.md](src/2_frameworks/4_mcp/README.md) for more details.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+### 3. Evals
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+Synthetic data.
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+```bash
+uv run --env-file .env \
+-m src.3_evals.2_synthetic_data.synthesize_data \
+--source_dataset hf://vector-institute/hotpotqa@d997ecf:train \
+--langfuse_dataset_name search-dataset-synthetic-20250609 \
+--limit 18
+```
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+Quantify embedding diversity of synthetic data
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+```bash
+# Baseline: "Real" dataset
+uv run \
+--env-file .env \
+-m src.3_evals.2_synthetic_data.annotate_diversity \
+--langfuse_dataset_name search-dataset \
+--run_name cosine_similarity_bge_m3
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+# Synthetic dataset
+uv run \
+--env-file .env \
+-m src.3_evals.2_synthetic_data.annotate_diversity \
+--langfuse_dataset_name search-dataset-synthetic-20250609 \
+--run_name cosine_similarity_bge_m3
+```
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+Visualize embedding diversity of synthetic data
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+```bash
+uv run \
+--env-file .env \
+gradio src/3_evals/2_synthetic_data/gradio_visualize_diversity.py
+```
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+Run LLM-as-a-judge Evaluation on synthetic data
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+```bash
+uv run \
+--env-file .env \
+-m src.3_evals.1_llm_judge.run_eval \
+--langfuse_dataset_name search-dataset-synthetic-20250609 \
+--run_name enwiki_weaviate \
+--limit 18
+```
 
-## License
-For open source projects, say how it is licensed.
+## Requirements
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+- Python 3.12+
+- API keys as configured in `.env`.
+
+### Tidbit
+
+If you're curious about what "uv" stands for, it appears to have been more or
+less chosen [randomly](https://github.com/astral-sh/uv/issues/1349#issuecomment-1986451785).
