@@ -59,11 +59,21 @@ async def _main(
             session=session,
             max_turns=30,
         )
+        
 
         async for event in result_stream.stream_events():
             turn_messages += oai_agent_stream_to_gradio_messages(event)
             if turn_messages:
                 yield turn_messages
+        
+        # # code to turn off the message streaming and only yield final output in UI
+        # async for event in result_stream.stream_events():
+        #         # Only render final responses to the UI
+        #         if event.type == "response.completed":
+        #                     turn_messages += oai_agent_stream_to_gradio_messages(event)
+        #                     yield turn_messages
+
+
 
         obs.update(output=result_stream.final_output)
 
