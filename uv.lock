@@ -8,121 +8,6 @@ resolution-markers = [
 ]
 
 [[package]]
-name = "agent-bootcamp-202507"
-version = "0.1.0"
-source = { editable = "." }
-dependencies = [
-    { name = "aiohttp" },
-    { name = "beautifulsoup4" },
-    { name = "datasets" },
-    { name = "e2b-code-interpreter" },
-    { name = "gradio" },
-    { name = "langfuse" },
-    { name = "lxml" },
-    { name = "nest-asyncio" },
-    { name = "numpy" },
-    { name = "openai" },
-    { name = "openai-agents" },
-    { name = "plotly" },
-    { name = "pydantic" },
-    { name = "pydantic-ai-slim", extra = ["logfire"] },
-    { name = "scikit-learn" },
-    { name = "weaviate-client" },
-]
-
-[package.dev-dependencies]
-dev = [
-    { name = "aieng-platform-onboard" },
-    { name = "codecov" },
-    { name = "ipykernel" },
-    { name = "ipython" },
-    { name = "ipywidgets" },
-    { name = "jupyter" },
-    { name = "jupyterlab" },
-    { name = "nbqa" },
-    { name = "pip-audit" },
-    { name = "pre-commit" },
-    { name = "pymupdf" },
-    { name = "pytest" },
-    { name = "pytest-asyncio" },
-    { name = "pytest-cov" },
-    { name = "pytest-mock" },
-    { name = "ruff" },
-    { name = "transformers" },
-]
-docs = [
-    { name = "ipykernel" },
-    { name = "ipython" },
-    { name = "jinja2" },
-    { name = "mkdocs" },
-    { name = "mkdocs-material" },
-    { name = "mkdocstrings" },
-    { name = "mkdocstrings-python" },
-]
-web-search = [
-    { name = "fastapi", extra = ["standard"] },
-    { name = "google-cloud-firestore" },
-    { name = "google-genai" },
-    { name = "simplejson" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "aiohttp", specifier = ">=3.12.14" },
-    { name = "beautifulsoup4", specifier = ">=4.13.4" },
-    { name = "datasets", specifier = ">=4.4.0" },
-    { name = "e2b-code-interpreter", specifier = ">=2.3.0" },
-    { name = "gradio", specifier = ">=6.1.0" },
-    { name = "langfuse", specifier = ">=3.9.0" },
-    { name = "lxml", specifier = ">=6.0.0" },
-    { name = "nest-asyncio", specifier = ">=1.6.0" },
-    { name = "numpy", specifier = "<2.3.0" },
-    { name = "openai", specifier = ">=2.6.0" },
-    { name = "openai-agents", specifier = ">=0.4.0" },
-    { name = "plotly", specifier = ">=6.2.0" },
-    { name = "pydantic", specifier = ">=2.11.7" },
-    { name = "pydantic-ai-slim", extras = ["logfire"], specifier = ">=0.3.7" },
-    { name = "scikit-learn", specifier = ">=1.7.0" },
-    { name = "weaviate-client", specifier = ">=4.15.4" },
-]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "aieng-platform-onboard", specifier = ">=0.3.6" },
-    { name = "codecov", specifier = ">=2.1.13" },
-    { name = "ipykernel", specifier = ">=6.29.5" },
-    { name = "ipython", specifier = ">=9.4.0" },
-    { name = "ipywidgets", specifier = ">=8.1.7" },
-    { name = "jupyter", specifier = ">=1.1.1" },
-    { name = "jupyterlab", specifier = ">=4.4.8" },
-    { name = "nbqa", specifier = ">=1.9.1" },
-    { name = "pip-audit", specifier = ">=2.7.3" },
-    { name = "pre-commit", specifier = ">=4.1.0" },
-    { name = "pymupdf", specifier = ">=1.26.7" },
-    { name = "pytest", specifier = ">=8.3.4" },
-    { name = "pytest-asyncio", specifier = ">=1.2.0" },
-    { name = "pytest-cov", specifier = ">=7.0.0" },
-    { name = "pytest-mock", specifier = ">=3.14.0" },
-    { name = "ruff", specifier = ">=0.12.2" },
-    { name = "transformers", specifier = ">=4.54.1" },
-]
-docs = [
-    { name = "ipykernel", specifier = ">=6.29.5" },
-    { name = "ipython", specifier = ">=9.4.0" },
-    { name = "jinja2", specifier = ">=3.1.6" },
-    { name = "mkdocs", specifier = ">=1.6.0" },
-    { name = "mkdocs-material", specifier = ">=9.6.15" },
-    { name = "mkdocstrings", specifier = ">=0.24.1" },
-    { name = "mkdocstrings-python", specifier = ">=1.16.12" },
-]
-web-search = [
-    { name = "fastapi", extras = ["standard"], specifier = ">=0.116.1" },
-    { name = "google-cloud-firestore", specifier = ">=2.21.0" },
-    { name = "google-genai", specifier = ">=1.46.0" },
-    { name = "simplejson", specifier = ">=3.20.2" },
-]
-
-[[package]]
 name = "aieng-platform-onboard"
 version = "0.3.6"
 source = { registry = "https://pypi.org/simple" }
@@ -1387,6 +1272,24 @@ wheels = [
 ]
 
 [[package]]
+name = "google-cloud-bigquery"
+version = "3.40.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "google-api-core", extra = ["grpc"] },
+    { name = "google-auth" },
+    { name = "google-cloud-core" },
+    { name = "google-resumable-media" },
+    { name = "packaging" },
+    { name = "python-dateutil" },
+    { name = "requests" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/94/0a/62438ca138a095945468968696d9cca75a4cfd059e810402e70b0236d8ba/google_cloud_bigquery-3.40.0.tar.gz", hash = "sha256:b3ccb11caf0029f15b29569518f667553fe08f6f1459b959020c83fbbd8f2e68", size = 509287, upload-time = "2026-01-08T01:07:26.065Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/90/6a/90a04270dd60cc70259b73744f6e610ae9a158b21ab50fb695cca0056a3d/google_cloud_bigquery-3.40.0-py3-none-any.whl", hash = "sha256:0469bcf9e3dad3cab65b67cce98180c8c0aacf3253d47f0f8e976f299b49b5ab", size = 261335, upload-time = "2026-01-08T01:07:23.761Z" },
+]
+
+[[package]]
 name = "google-cloud-core"
 version = "2.5.0"
 source = { registry = "https://pypi.org/simple" }
@@ -1682,6 +1585,123 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/1d/17/afa56379f94ad0fe8defd37d6eb3f89a25404ffc71d4d848893d270325fc/h2-4.3.0.tar.gz", hash = "sha256:6c59efe4323fa18b47a632221a1888bd7fde6249819beda254aeca909f221bf1", size = 2152026, upload-time = "2025-08-23T18:12:19.778Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/69/b2/119f6e6dcbd96f9069ce9a2665e0146588dc9f88f29549711853645e736a/h2-4.3.0-py3-none-any.whl", hash = "sha256:c438f029a25f7945c69e0ccf0fb951dc3f73a5f6412981daee861431b70e2bdd", size = 61779, upload-time = "2025-08-23T18:12:17.779Z" },
+]
+
+[[package]]
+name = "health-chatbot"
+version = "0.1.0"
+source = { editable = "." }
+dependencies = [
+    { name = "aiohttp" },
+    { name = "beautifulsoup4" },
+    { name = "datasets" },
+    { name = "e2b-code-interpreter" },
+    { name = "google-cloud-bigquery" },
+    { name = "gradio" },
+    { name = "langfuse" },
+    { name = "lxml" },
+    { name = "nest-asyncio" },
+    { name = "numpy" },
+    { name = "openai" },
+    { name = "openai-agents" },
+    { name = "plotly" },
+    { name = "pydantic" },
+    { name = "pydantic-ai-slim", extra = ["logfire"] },
+    { name = "scikit-learn" },
+    { name = "weaviate-client" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "aieng-platform-onboard" },
+    { name = "codecov" },
+    { name = "ipykernel" },
+    { name = "ipython" },
+    { name = "ipywidgets" },
+    { name = "jupyter" },
+    { name = "jupyterlab" },
+    { name = "nbqa" },
+    { name = "pip-audit" },
+    { name = "pre-commit" },
+    { name = "pymupdf" },
+    { name = "pytest" },
+    { name = "pytest-asyncio" },
+    { name = "pytest-cov" },
+    { name = "pytest-mock" },
+    { name = "ruff" },
+    { name = "transformers" },
+]
+docs = [
+    { name = "ipykernel" },
+    { name = "ipython" },
+    { name = "jinja2" },
+    { name = "mkdocs" },
+    { name = "mkdocs-material" },
+    { name = "mkdocstrings" },
+    { name = "mkdocstrings-python" },
+]
+web-search = [
+    { name = "fastapi", extra = ["standard"] },
+    { name = "google-cloud-firestore" },
+    { name = "google-genai" },
+    { name = "simplejson" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "aiohttp", specifier = ">=3.12.14" },
+    { name = "beautifulsoup4", specifier = ">=4.13.4" },
+    { name = "datasets", specifier = ">=4.4.0" },
+    { name = "e2b-code-interpreter", specifier = ">=2.3.0" },
+    { name = "google-cloud-bigquery", specifier = ">=3.40.0" },
+    { name = "gradio", specifier = ">=6.1.0" },
+    { name = "langfuse", specifier = ">=3.9.0" },
+    { name = "lxml", specifier = ">=6.0.0" },
+    { name = "nest-asyncio", specifier = ">=1.6.0" },
+    { name = "numpy", specifier = "<2.3.0" },
+    { name = "openai", specifier = ">=2.6.0" },
+    { name = "openai-agents", specifier = ">=0.4.0" },
+    { name = "plotly", specifier = ">=6.2.0" },
+    { name = "pydantic", specifier = ">=2.11.7" },
+    { name = "pydantic-ai-slim", extras = ["logfire"], specifier = ">=0.3.7" },
+    { name = "scikit-learn", specifier = ">=1.7.0" },
+    { name = "weaviate-client", specifier = ">=4.15.4" },
+]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "aieng-platform-onboard", specifier = ">=0.3.6" },
+    { name = "codecov", specifier = ">=2.1.13" },
+    { name = "ipykernel", specifier = ">=6.29.5" },
+    { name = "ipython", specifier = ">=9.4.0" },
+    { name = "ipywidgets", specifier = ">=8.1.7" },
+    { name = "jupyter", specifier = ">=1.1.1" },
+    { name = "jupyterlab", specifier = ">=4.4.8" },
+    { name = "nbqa", specifier = ">=1.9.1" },
+    { name = "pip-audit", specifier = ">=2.7.3" },
+    { name = "pre-commit", specifier = ">=4.1.0" },
+    { name = "pymupdf", specifier = ">=1.26.7" },
+    { name = "pytest", specifier = ">=8.3.4" },
+    { name = "pytest-asyncio", specifier = ">=1.2.0" },
+    { name = "pytest-cov", specifier = ">=7.0.0" },
+    { name = "pytest-mock", specifier = ">=3.14.0" },
+    { name = "ruff", specifier = ">=0.12.2" },
+    { name = "transformers", specifier = ">=4.54.1" },
+]
+docs = [
+    { name = "ipykernel", specifier = ">=6.29.5" },
+    { name = "ipython", specifier = ">=9.4.0" },
+    { name = "jinja2", specifier = ">=3.1.6" },
+    { name = "mkdocs", specifier = ">=1.6.0" },
+    { name = "mkdocs-material", specifier = ">=9.6.15" },
+    { name = "mkdocstrings", specifier = ">=0.24.1" },
+    { name = "mkdocstrings-python", specifier = ">=1.16.12" },
+]
+web-search = [
+    { name = "fastapi", extras = ["standard"], specifier = ">=0.116.1" },
+    { name = "google-cloud-firestore", specifier = ">=2.21.0" },
+    { name = "google-genai", specifier = ">=1.46.0" },
+    { name = "simplejson", specifier = ">=3.20.2" },
 ]
 
 [[package]]

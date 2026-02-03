@@ -1,9 +1,9 @@
 [project]
-name = "agent-bootcamp-202507"
+name = "health_chatbot"
 version = "0.1.0"
-description = "Vector Institute Agent Bootcamp 202507"
+description = "AI health Insights Chatbot"
 readme = "README.md"
-authors = [ {name = "Vector AI Engineering", email = "ai_engineering@vectorinstitute.ai"}]
+authors = [ {name = "Vector AI Engineering", email = "doaa.altarawy@loblaw.ca"}]
 license = "Apache-2.0"
 requires-python = ">=3.12"
 dependencies = [
@@ -11,6 +11,7 @@ dependencies = [
     "beautifulsoup4>=4.13.4",
     "datasets>=4.4.0",
     "e2b-code-interpreter>=2.3.0",
+    "google-cloud-bigquery>=3.40.0",
     "gradio>=6.1.0",
     "langfuse>=3.9.0",
     "lxml>=6.0.0",

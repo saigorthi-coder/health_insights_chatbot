@@ -27,4 +27,6 @@ wheels/
 site/
 
 # Gradio "share=True" utils.
-/.gradio
+.gradio/
+*.pem
+*.key
