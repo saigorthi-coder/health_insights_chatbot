@@ -2,11 +2,10 @@ import agents
 #from tools.csv_tool import rows_to_csv
 from src.utils import CodeInterpreter
 from src.utils.client_manager import AsyncClientManager
-from src.health_chatbot.health_agents.sql_agent import build_sql_agent
+from src.health_chatbot.health_agents.sql_agent import build_sql_agent, get_db_schema
 #from bot_agents.viz_agent import build_visualization_agent
 from src.utils.tools.gemini_grounding import GeminiGroundingWithGoogleSearch
 from src.health_chatbot.health_agents.prompts import MAIN_AGENT_INSTRUCTIONS_v2, CODE_INTERPRETER_DESCRIPTION_v2
-
 
 
 
@@ -65,13 +64,14 @@ def build_orchestrator_agent(client_manager: AsyncClientManager):
             ),
             #agents.function_tool(rows_to_csv, name_override="rows_to_csv"),
             agents.function_tool(
-                code_interpreter.run_code, name_override="code_interpreter", 
+                code_interpreter.run_code, 
                 description_override=CODE_INTERPRETER_DESCRIPTION_v2,
             ),
             agents.function_tool(
                 gemini_grounding_tool.get_web_search_grounded_response,
                 name_override="search_web",
             ),
+            agents.function_tool(get_db_schema),
         ],
         model=agents.OpenAIChatCompletionsModel(
             model=planner_model,

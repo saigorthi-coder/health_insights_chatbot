@@ -60,22 +60,12 @@ async def _main(
             input=query,
             session=session,
             max_turns=30,
-        )
-        
+        )  
 
         async for event in result_stream.stream_events():
             turn_messages += oai_agent_stream_to_gradio_messages(event)
             if turn_messages:
                 yield turn_messages
-        
-        # # code to turn off the message streaming and only yield final output in UI
-        # async for event in result_stream.stream_events():
-        #         # Only render final responses to the UI
-        #         if event.type == "response.completed":
-        #                     turn_messages += oai_agent_stream_to_gradio_messages(event)
-        #                     yield turn_messages
-
-
 
         obs.update(output=result_stream.final_output)
 
@@ -97,35 +87,35 @@ if __name__ == "__main__":
     orchestrator_agent = build_orchestrator_agent(client_manager)
 
     # ========================================================
-    # Gradio UI (logos on both extremes)
+    # Gradio UI
     # ========================================================
 
     with gr.Blocks(title="Clinical Data Insights Chatbot") as demo:
         with gr.Row():
-            with gr.Column(scale=1):
+            with gr.Column(scale=1, min_width=100):
                 gr.Image(
                     value="assets/Shoppers-Drug-Mart-Logo-Vector-Image.jpg",
                     show_label=False,
-                    height=60,
+                    container=False, 
+                    height=100,
                 )
-
             with gr.Column(scale=3):
                 gr.Markdown(
                     """
                     <div style="text-align: center;">
-                        <h2>Clinical Data Insights Chatbot</h2>
-                        <p style="margin-top: -10px;">
+                        <h1>Clinical Data Insights Chatbot</h1>
+                        <h3 style="margin-top: -10px;">
                             Query • Analyze • Visualize
-                        </p>
+                        </h3>
                     </div>
                     """
                 )
-
-            with gr.Column(scale=1):
+            with gr.Column(scale=1, min_width=100):
                 gr.Image(
                     value="assets/loblaw logo.jpg",
                     show_label=False,
-                    height=60,
+                    container=False, 
+                    height=100,
                 )
 
         # ---- Chat UI ----
@@ -133,11 +123,15 @@ if __name__ == "__main__":
             _main,
             **COMMON_GRADIO_CONFIG,
             examples=[
-            ["How many records are in the table?"],
-            ["Show the average age pf patients by sex"],
-            ["Plot number of records by region"],
-            ['How many records have A1C greater than 6.5']
-        ],
+                ["How many records are in the database?"],
+                ["What patient features are there in your data?"],
+                ["Show me a sample of two raws in from your data."],
+                ["Plot number of patients per month"],
+                ["How many patients have diabetes? broken down by gender."],
+                ["Plot the distribution of patients in different blood pressure categories."],
+                # ["What's the relationship between BMI and A1C levels in our data?"],
+            ],
+            analytics_enabled=False,
         )
 
     try:

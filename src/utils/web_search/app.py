@@ -738,7 +738,7 @@ async def update_api_key(
     APIKeySummary
         Updated API key summary reflecting the applied changes.
     """
-    updates = payload.model_dump(exclude_unset=True)
+    updates = payload.dict(exclude_unset=True)
 
     if "usage_limit" in updates:
         await authenticator.adjust_usage_limit(lookup_hash, updates["usage_limit"])

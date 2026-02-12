@@ -1,0 +1,8 @@
+
+BQ_PROJECT = "project-ad8e168b-9904-43b7-b43"
+BQ_DATASET = "Vector_AI_POC"
+BQ_TABLE = "Health_Insurance_Synthetic_PT_ID"
+
+FULL_TABLE_NAME = f"`{BQ_PROJECT}.{BQ_DATASET}.{BQ_TABLE}`"
+
+DB_MAX_SQL_RETRIES = 3
