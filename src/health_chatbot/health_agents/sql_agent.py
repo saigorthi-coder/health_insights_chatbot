@@ -1,5 +1,5 @@
 import agents
-from tools.bigquery_tool import run_bigquery_query, get_db_schema
+from src.health_chatbot.tools.bigquery_tool import run_bigquery_query, get_db_schema
 from src.health_chatbot.health_agents.prompts import SQL_AGENT_INSTRUCTIONS_v2
 from src.health_chatbot.config import FULL_TABLE_NAME, DB_MAX_SQL_RETRIES
 
