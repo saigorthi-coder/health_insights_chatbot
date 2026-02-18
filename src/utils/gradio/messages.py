@@ -159,11 +159,29 @@ def oai_agent_items_to_gradio_messages(
 
 def oai_agent_stream_to_gradio_messages(
     stream_event: StreamEvent,
+    debug: bool = False,  # <-- add debug flag here
 ) -> list[ChatMessage]:
-    """Parse agent sdk "stream event" into a list of gr messages.
-
-    Adds extra data for tool use to make the gradio display informative.
     """
+    Converts agent stream events to Gradio messages.
+
+    Args:
+        stream_event: The event from the agent stream.
+        debug: If True, show all intermediate reasoning, tool calls, and tool outputs.
+               If False, suppress intermediate messages (only final output is sent from app.py).
+
+    Returns:
+        List of ChatMessage for Gradio.
+    """
+
+    # ---------------------------------------
+    # NORMAL MODE — suppress all agent internals
+    # ---------------------------------------
+    if not debug:
+        return []
+
+    # ---------------------------------------
+    # DEBUG MODE — existing behavior
+    # ---------------------------------------
     output: list[ChatMessage] = []
 
     if isinstance(stream_event, stream_events.RawResponsesStreamEvent):
@@ -181,6 +199,7 @@ def oai_agent_stream_to_gradio_messages(
             for message in data.response.output:
                 if isinstance(message, ResponseOutputMessage):
                     for _item in message.content:
+                        # ---------------- TEXT ----------------
                         if isinstance(_item, ResponseOutputText):
                             output.append(
                                 ChatMessage(
