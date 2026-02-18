@@ -40,6 +40,7 @@ async def _main(
     query: str,
     history: list[ChatMessage],
     session_state: dict[str, Any],
+    debug: bool = False,  # <-- new flag
 ) -> AsyncGenerator[list[ChatMessage], Any]:
 
     turn_messages: list[ChatMessage] = []
@@ -60,14 +61,32 @@ async def _main(
             input=query,
             session=session,
             max_turns=30,
-        )  
+        )
 
+        # -------------------------------
+        # STREAM INTERMEDIATE EVENTS
+        # -------------------------------
         async for event in result_stream.stream_events():
-            turn_messages += oai_agent_stream_to_gradio_messages(event)
-            if turn_messages:
+            # pass debug flag here
+            messages = oai_agent_stream_to_gradio_messages(event, debug=debug)
+            if messages:
+                turn_messages += messages
                 yield turn_messages
 
-        obs.update(output=result_stream.final_output)
+        # -------------------------------
+        # SEND FINAL ANSWER TO GRADIO
+        # -------------------------------
+        final_text = result_stream.final_output
+        if final_text:
+            yield [
+                ChatMessage(
+                    role="assistant",
+                    content=final_text
+                )
+            ]
+
+        # update Langfuse with final output
+        obs.update(output=final_text)
 
 
 # ============================================================
