@@ -3,7 +3,7 @@ import agents
 from src.utils import CodeInterpreter
 from src.utils.client_manager import AsyncClientManager
 from src.health_chatbot.health_agents.sql_agent import build_sql_agent, get_db_schema
-from health_agents.viz_agent import build_visualization_agent
+from src.health_chatbot.health_agents.viz_agent import build_visualization_agent
 from src.utils.tools.gemini_grounding import GeminiGroundingWithGoogleSearch
 from src.health_chatbot.health_agents.prompts import MAIN_AGENT_INSTRUCTIONS_v2, CODE_INTERPRETER_DESCRIPTION_v2
 
@@ -41,7 +41,7 @@ def build_orchestrator_agent(client_manager: AsyncClientManager):
 
     code_interpreter = CodeInterpreter()
 
-    # ---- Visualization agent (Code Interpreter / E2B) ----
+    #---- Visualization agent (Code Interpreter / E2B) ----
     visualization_agent = build_visualization_agent(
         code_interpreter=code_interpreter,
         model=agents.OpenAIChatCompletionsModel(
